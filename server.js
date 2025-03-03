@@ -15,19 +15,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "root1",
-    password: "Ilove.240545",
-    database: "ting_commu",
-    port: 3307
-})
+    host: process.env.MYSQLHOST,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: process.env.MYSQLPORT,
+  });
+  
 
-con.connect(err => {
-    if (err) throw (err);
-    else {
-        console.log("MySQL connected");
+  con.connect((err) => {
+    if (err) {
+      console.error("Database connection failed:", err);
+      return;
     }
-})
+    console.log("Connected to MySQL Database!");
+  });
+  
+  module.exports = con;
 
 const queryDB = (sql) => {
     return new Promise((resolve, reject) => {
