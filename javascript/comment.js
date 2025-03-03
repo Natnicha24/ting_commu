@@ -230,24 +230,21 @@ async function createDisplay(data) {
         let image = document.createElement('img')
         image.setAttribute('alt', 'like')
 
-        if (Object.keys(data2).length !== 0) {
-            for (const e in data) {
-                for (const n in data2) {
-                    if (data[e].id === data2[n].postId) {
-                        console.log('like')
-                        image.setAttribute('src', `../images/loveed.png`)
-                    } else {
-                        console.log('notlike')
-
-                        image.setAttribute('src', `../images/like.svg`)
-                    }
+        if (Object.keys(data2).length !== 0) { // data2 = like
+            for (const n in data2) {
+                console.log(`${data[e].id}=${data2[n].postId}`)
+                if (data[e].id == data2[n].postId) {
+                    console.log('yes');
+                    image.setAttribute('src', `../images/loveed.png`);
+                    break
+                }else{
+                    console.log('no');
+                    image.setAttribute('src', `../images/like.svg`);
                 }
             }
         } else {
-            image.setAttribute('src', `../images/like.svg`)
-
+            image.setAttribute('src', `../images/like.svg`);
         }
-
 
         like.appendChild(image)
 
