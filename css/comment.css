@@ -1,0 +1,133 @@
+html {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    ;
+
+}
+
+body {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    ;
+
+}
+
+#write-comment {
+    display: flex;
+    width: 100%;
+    /* background-color: red; */
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: solid 2px rgb(218, 211, 211);
+}
+
+#write-form {
+    background-color: blue;
+    width: 100%;
+    display: flex;
+}
+
+#write-comment>#write-form>input {
+    flex: 1;
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    ;
+
+}
+
+#write-comment>#write-form>button {
+    background-color: white;
+    border: 1px black solid;
+    border-left: none;
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    ;
+    cursor: pointer;
+}
+
+#write-comment>#write-form>button:hover {
+    background-color: rgb(197, 196, 196);
+}
+
+#profile-comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: fit-content;
+    gap: 5px;
+}
+
+#profile-comment>div {
+    display: flex;
+    align-items: center;
+}
+
+#profile-comment>div>img {
+    width: 20px;
+    height: 20px;
+}
+
+#show-comment {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom: solid lightgray 1px;
+}
+
+#profile-detail-comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
+    width: 100%;
+}
+
+.username-comment {
+    display: inline;
+    /* ให้ขนาดตามเนื้อหา */
+    text-align: left;
+    /* ชิดซ้าย */
+    font-size: 12px;
+    padding: 0;
+    /* เอา padding ออก */
+    line-height: 1;
+    /* กำหนดความสูงเท่ากับตัวอักษร */
+    margin: 0;
+    /* เอาระยะห่างออก */
+    vertical-align: top;
+    /* จัดข้อความให้อยู่ด้านบน */
+    width: fit-content;
+    font-weight: 700;
+}
+
+.date-comment {
+    display: inline-block;
+    /* ให้ขนาดตามเนื้อหา */
+    text-align: left;
+    /* ชิดซ้าย */
+    font-size: 10px;
+    padding-top: 3px;
+    /* เอา padding ออก */
+    line-height: 1;
+    /* กำหนดความสูงเท่ากับตัวอักษร */
+    margin: 0;
+    /* เอาระยะห่างออก */
+    vertical-align: top;
+    /* จัดข้อความให้อยู่ด้านบน */
+    width: 100%;
+color: gray;
+}
+
+#content-comment {
+    width: 100%;
+    margin-top: 5px;
+    text-align: left;
+    margin-bottom: 3px;
+}
+
+#content-comment p {
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+    /* padding-left: 10px; */
+}

@@ -1,0 +1,96 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D6F7F0;
+    text-align: center;
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    font-size: 18px;
+    background-color: #FBADA6;
+    padding: 8px;
+    font-weight: 700;
+    position: relative;
+}
+
+nav span {
+    margin: 0;
+}
+
+#logout {
+    position: absolute;
+    right: 20px;
+}
+
+#logout button {
+    font-size: 14px;
+    background-color: #6bc7d3;
+    border-radius: 50px;
+    border: white 2px solid;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#logout button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.147);
+}
+
+#greeting {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 50px;
+}
+
+#greeting span{
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 50px;
+    border: black 2px solid;
+}
+
+#fandom {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 0 50px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+li{
+    list-style: none;
+}
+
+.menu{
+    margin-top: 10px;
+    display: flex;
+    justify-content: left;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+img{
+    max-width: 100px;
+    height: 100px;
+}
+
+.fandom-choice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    gap: 1px;
+    margin-top: 10px;
+}

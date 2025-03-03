@@ -1,0 +1,241 @@
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-width: 100vw;
+}
+
+body {
+    background-color: #D6F7F0;
+    text-align: center;
+    font-family: "IBM Plex Sans Thai", sans-serif;
+width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    font-size: 18px;
+    background-color: #FBADA6;
+    padding: 8px;
+    font-weight: 700;
+    position: relative;
+}
+
+nav span {
+    margin: 0;
+}
+
+#back {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 50px;
+    cursor: pointer;
+}
+
+#back img {
+    width: 25px;
+    height: 25px;
+}
+
+#write-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+#room-name {
+    font-size: 18px;
+    font-weight: 700;
+    background-color: white;
+    border: black 2px solid;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+#write {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #FBADA6;
+    width: 40%;
+    height: 80px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: black 1px solid;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.147);
+
+}
+
+#content-write{
+    font-family:"IBM Plex Sans Thai", sans-serif; ;
+}
+
+#profile-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#profile-image img {
+    width: 45px;
+    height: 45px;
+}
+
+
+#post-btn button {
+    height: 100%;
+    background-color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+#write-text {
+    flex: 1;
+    height: 100%;
+}
+
+#write-text textarea {
+    width: 100%;
+    height: 100%;
+    background-color: #FBADA6;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    resize: none;
+    /* ปิดการปรับขนาดเอง */
+    overflow-y: auto;
+    /* แสดงแถบเลื่อนแนวตั้งเมื่อเนื้อหาเกิน */
+    vertical-align: top;
+    /* จัดเนื้อหาให้อยู่ด้านบน */
+    box-sizing: border-box;
+    /* ทำให้ padding ไม่กินขนาด width/height */
+    outline: none;
+    scrollbar-width: none;
+}
+
+#post-btn button:hover {
+    background-color: #efccc9;
+}
+
+#read-section {
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+}
+
+.post-style {
+    width: 40%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 10px 20px;
+    border: 1px solid black;
+}
+
+#profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: fit-content;
+    gap: 5px;
+}
+
+#profile>div {
+    display: flex;
+    align-items: center;
+}
+
+#profile>div>img {
+    width: 35px;
+    height: 35px;
+}
+
+#profile-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 3px;
+}
+
+#profille-detail div {
+    text-align: left;
+}
+
+.date {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    font-size: 13px;
+    color: gray;
+    padding: 0;
+    line-height: 1; /* กำหนดความสูงเท่ากับตัวอักษร */
+}
+
+.username {
+    display: inline-block; /* ให้ขนาดตามเนื้อหา */
+    text-align: left; /* ชิดซ้าย */
+    font-size: 14px; 
+    padding: 0; /* เอา padding ออก */
+    line-height: 1; /* กำหนดความสูงเท่ากับตัวอักษร */
+    margin: 0; /* เอาระยะห่างออก */
+    vertical-align: top; /* จัดข้อความให้อยู่ด้านบน */
+    width: 100%;
+}
+
+#content{
+    width: 100%;
+    margin-top: 10px;
+    text-align: left;
+    height: fit-content;
+    margin-bottom: 10px;
+
+}
+
+#content p {
+    width: 100%;
+    white-space: pre-wrap; /* ให้รองรับการขึ้นบรรทัดใหม่ */
+    overflow-wrap: break-word; /* ตัดคำเมื่อเกินความกว้าง */
+    word-break: break-word; /* ตัดคำเมื่อไม่มีช่องว่าง */
+}
+
+#react{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    border-top: rgba(0, 0, 0, 0.253) 1px solid;
+    padding-top: 10px;
+    
+}
+
+.react-style{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    gap: 2px;
+    cursor: pointer;
+}
+
+.react-style img{
+    width: 18px;
+    height: 18px;
+}
