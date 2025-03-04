@@ -15,23 +15,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 const con = mysql.createConnection({
-    host: process.env.MYSQLHOST,
-    user: process.env.MYSQLUSER,
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE,
-    port: process.env.MYSQLPORT,
-  });
-  
+    host: "localhost",
+    user: "root1",
+    password: "Ilove.240545",
+    database: "ting_commu",
+    port: 3307
+})
 
-  con.connect((err) => {
-    if (err) {
-      console.error("Database connection failed:", err);
-      return;
+con.connect(err => {
+    if (err) throw (err);
+    else {
+        console.log("MySQL connected");
     }
-    console.log("Connected to MySQL Database!");
-  });
-  
-  module.exports = con;
+})
 
 const queryDB = (sql) => {
     return new Promise((resolve, reject) => {
@@ -61,10 +57,10 @@ app.post('/regisDB', async (req, res) => {
         result = await queryDB(sql);
         res.cookie('image', 'avatar.png');
         console.log("New user registed!");
-        return res.redirect('http://localhost:3000/page/index.html');
+        return res.redirect('http://localhost:3000/index.html');
     }
     else {
-        return res.redirect('/page/signup.html?error=1')
+        return res.redirect('/signup.html?error=1')
     }
 
 })
@@ -119,12 +115,12 @@ app.post('/checkLogin', async (req, res) => {
                 check = 1;
             }
             else {
-                return res.redirect('/page/index.html?error=1');
+                return res.redirect('/index.html?error=1');
             }
         }
     }
     if (check == 0) {
-        return res.redirect('/page/index.html?error=1');
+        return res.redirect('/index.html?error=1');
     }
 });
 
@@ -470,5 +466,5 @@ app.post('/getComment', async (req, res) => {
 
 
 app.listen(port, hostname, () => {
-    console.log(`Server running at   http://${hostname}:${port}/page/index.html`);
+    console.log(`Server running at   http://${hostname}:${port}/index.html`);
 });

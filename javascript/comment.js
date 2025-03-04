@@ -8,7 +8,7 @@ function checkSession() {
     console.log("Token:", token);
 
     if (!username || !token) {
-        window.location.href = "/page/index.html";
+        window.location.href = "/index.html";
     }
 }
 
