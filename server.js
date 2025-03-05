@@ -7,19 +7,21 @@ const multer = require('multer');
 const path = require('path');
 const mysql = require('mysql');
 const hostname = 'localhost';
-const port = 3000;
+require('dotenv').config();
 
-app.use(express.static(__dirname));
+// const port = 3000;
+const port=process.env.PORT ||3000;
+app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "root1",
-    password: "Ilove.240545",
-    database: "ting_commu",
-    port: 3307
+    host: process.env.MYSQLHOST,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: process.env.MYSQLPORT
 })
 
 con.connect(err => {
