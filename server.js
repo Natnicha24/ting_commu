@@ -1,16 +1,17 @@
-const express = require('express')
+const express = require('express');
 const app = express();
 const fs = require('fs');
 const bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const path = require('path');
 const mysql = require('mysql');
-const hostname = 'localhost';
 require('dotenv').config();
+const cors = require('cors');
 
-// const port = 3000;
-const port=process.env.PORT ||3000;
+const port = process.env.PORT || 3000;
+
+app.use(cors());
 app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,14 +23,12 @@ const con = mysql.createConnection({
     password: process.env.MYSQLPASSWORD,
     database: process.env.MYSQLDATABASE,
     port: process.env.MYSQLPORT
-})
+});
 
 con.connect(err => {
-    if (err) throw (err);
-    else {
-        console.log("MySQL connected");
-    }
-})
+    if (err) throw err;
+    console.log("MySQL connected");
+});
 
 const queryDB = (sql) => {
     return new Promise((resolve, reject) => {
@@ -466,7 +465,10 @@ app.post('/getComment', async (req, res) => {
     res.send(JSON.stringify(result));
 })
 
-
-app.listen(port, hostname, () => {
-    console.log(`Server running at   http://${hostname}:${port}/index.html`);
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
 });
+
+// app.listen(port, hostname, () => {
+//     console.log(`Server running at   http://${hostname}:${port}/index.html`);
+// });
