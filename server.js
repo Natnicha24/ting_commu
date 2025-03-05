@@ -9,7 +9,7 @@ const mysql = require('mysql');
 require('dotenv').config();
 const cors = require('cors');
 
-const port = process.env.PORT || 3000;
+const port = process.env.MYSQLPORT || 3000;
 
 app.use(cors());
 app.use(express.static(path.join(__dirname)));
@@ -465,10 +465,10 @@ app.post('/getComment', async (req, res) => {
     res.send(JSON.stringify(result));
 })
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
-
-// app.listen(port, hostname, () => {
-//     console.log(`Server running at   http://${hostname}:${port}/index.html`);
+// app.listen(port, () => {
+//     console.log(`Server running at http://localhost:${port}`);
 // });
+
+app.listen(port, hostname, () => {
+    console.log(`Server running at   http://${hostname}:${port}/index.html`);
+});
