@@ -8,7 +8,7 @@ const path = require('path');
 const mysql = require('mysql');
 require('dotenv').config();
 const cors = require('cors');
-const host = process.env.MYSQLHOST;
+const host = '0.0.0.0';
 
 const port = process.env.MYSQLPORT || 3000;
 
