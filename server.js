@@ -58,7 +58,7 @@ app.post('/regisDB', async (req, res) => {
         result = await queryDB(sql);
         res.cookie('image', 'avatar.png');
         console.log("New user registed!");
-        return res.redirect('http://localhost:3000/index.html');
+        return res.redirect(`http://${host}:${port}/index.html`);
     }
     else {
         return res.redirect('/signup.html?error=1')
@@ -108,7 +108,7 @@ app.post('/checkLogin', async (req, res) => {
                 res.send(`<script>
                     sessionStorage.setItem('userToken', '${userToken}');
                     sessionStorage.setItem('username', '${req.body.username}');
-                    window.location.href='http://localhost:3000/page/home.html';
+                    window.location.href='http://${host}:${port}/page/home.html';
                     </script>`);
 
 
@@ -469,6 +469,6 @@ app.post('/getComment', async (req, res) => {
 //     console.log(`Server running at http://localhost:${port}`);
 // });
 
-app.listen(port, hostname, () => {
-    console.log(`Server running at   http://${hostname}:${port}/index.html`);
+app.listen(port, host, () => {
+    console.log(`Server running at   http://${host}:${port}/index.html`);
 });
