@@ -13,4 +13,15 @@ function pageLoad(){
 			document.getElementById('alert').hidden=false
 		}
 	}	
+
+	if (urlParams.get("error")==2){
+		if (window.location.href.split('/').pop()== "page/signup.html"){
+			document.getElementById('alert').innerHTML = "username not available."
+			document.getElementById('alert').hidden=false
+		}
+		else{
+			document.getElementById('alert').innerHTML = "username not available.";
+			document.getElementById('alert').hidden=false
+		}
+	}	
 }

@@ -1,35 +1,33 @@
-const express = require('express');
+const express = require('express')
 const app = express();
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 const multer = require('multer');
 const path = require('path');
 const mysql = require('mysql');
-require('dotenv').config();
-const cors = require('cors');
-const host = '0.0.0.0';
+const hostname = 'localhost';
+const port = 3000;
 
-const port = process.env.MYSQLPORT || 3000;
-
-app.use(cors());
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 const con = mysql.createConnection({
-    host: process.env.MYSQLHOST,
-    user: process.env.MYSQLUSER,
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE,
-    port: process.env.MYSQLPORT
-});
+    host: "localhost",
+    user: "root1",
+    password: "Ilove.240545",
+    database: "ting_commu",
+    port: 3307
+})
 
 con.connect(err => {
-    if (err) throw err;
-    console.log("MySQL connected");
-});
+    if (err) throw (err);
+    else {
+        console.log("MySQL connected");
+    }
+})
 
 const queryDB = (sql) => {
     return new Promise((resolve, reject) => {
@@ -45,8 +43,18 @@ const queryDB = (sql) => {
 app.post('/regisDB', async (req, res) => {
     console.log("---------------------------------------------");
     console.log("regis");
+
+    let sql = `SELECT username from user`;
+    let resultuser = await queryDB(sql);
+
+    for (const e in resultuser) {
+        if (req.body.username == resultuser[e].username) {
+            return res.redirect('/page/signup.html?error=2')
+        }
+    }
+
     if (req.body.password == req.body.passwordcf) {
-        let sql = `
+        sql = `
         CREATE TABLE IF NOT EXISTS user(
             id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(100),
@@ -54,15 +62,15 @@ app.post('/regisDB', async (req, res) => {
             image VARCHAR(200),
             token VARCHAR(255)
         )`;
-        let result = await queryDB(sql);
+        result = await queryDB(sql);
         sql = `INSERT INTO user(username,password,image) VALUES ("${req.body.username}","${req.body.password}","avatar.png")`;
         result = await queryDB(sql);
         res.cookie('image', 'avatar.png');
         console.log("New user registed!");
-        return res.redirect(`http://${host}:${port}/index.html`);
+        return res.redirect('http://localhost:3000/index.html');
     }
     else {
-        return res.redirect('/signup.html?error=1')
+        return res.redirect('/page/signup.html?error=1')
     }
 
 })
@@ -109,7 +117,7 @@ app.post('/checkLogin', async (req, res) => {
                 res.send(`<script>
                     sessionStorage.setItem('userToken', '${userToken}');
                     sessionStorage.setItem('username', '${req.body.username}');
-                    window.location.href='http://${host}:${port}/page/home.html';
+                    window.location.href='http://localhost:3000/page/home.html';
                     </script>`);
 
 
@@ -227,8 +235,8 @@ app.post('/getlike', async (req, res) => {
     result = await queryDB(sql);
 
     result = Object.assign({}, result);
-    console.log("get like",result);
-    
+    console.log("get like", result);
+
     res.send(JSON.stringify(result));
 })
 
@@ -295,10 +303,10 @@ CREATE TABLE IF NOT EXISTS liked(
     sql = `SELECT likenum FROM post WHERE id=${req.body.postId}`;
     result = await queryDB(sql)
     console.log(result[0].likenum)
-    
-    sql = `UPDATE post SET likenum=${result[0].likenum+1} WHERE id=${req.body.postId}`;
+
+    sql = `UPDATE post SET likenum=${result[0].likenum + 1} WHERE id=${req.body.postId}`;
     result = await queryDB(sql)
-   
+
 
     sql = `SELECT id FROM user WHERE username='${req.body.username}'`;
     result = await queryDB(sql)
@@ -315,8 +323,8 @@ app.post('/likedelete', async (req, res) => {
     let sql = `SELECT likenum FROM post WHERE id=${req.body.postId}`;
     let result = await queryDB(sql)
     console.log(result[0].likenum)
-    
-    sql = `UPDATE post SET likenum=${result[0].likenum-1} WHERE id=${req.body.postId}`;
+
+    sql = `UPDATE post SET likenum=${result[0].likenum - 1} WHERE id=${req.body.postId}`;
     result = await queryDB(sql)
 
 
@@ -416,8 +424,8 @@ app.post('/saveComment', async (req, res) => {
 
     let sql = `SELECT comment FROM post WHERE id=${req.body.postId}`;
     let result = await queryDB(sql)
-    
-    sql = `UPDATE post SET comment=${result[0].comment+1} WHERE id=${req.body.postId}`;
+
+    sql = `UPDATE post SET comment=${result[0].comment + 1} WHERE id=${req.body.postId}`;
     result = await queryDB(sql)
 
     sql = `
@@ -466,10 +474,7 @@ app.post('/getComment', async (req, res) => {
     res.send(JSON.stringify(result));
 })
 
-// app.listen(port, () => {
-//     console.log(`Server running at http://localhost:${port}`);
-// });
 
-app.listen(port, host, () => {
-    console.log(`Server running at   http://${host}:${port}/index.html`);
+app.listen(port, hostname, () => {
+    console.log(`Server running at   http://${hostname}:${port}/index.html`);
 });
